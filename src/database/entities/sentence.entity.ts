@@ -27,10 +27,28 @@ export class Sentence {
   @Column({ type: 'text' })
   content: string;
 
-  @Column({ type: 'decimal', precision: 10, scale: 3, default: 0 })
+  @Column({
+    type: 'decimal',
+    precision: 10,
+    scale: 3,
+    default: 0,
+    transformer: {
+      to: (value: number) => value,
+      from: (value: string) => parseFloat(value),
+    },
+  })
   start_time: number;
 
-  @Column({ type: 'decimal', precision: 10, scale: 3, default: 0 })
+  @Column({
+    type: 'decimal',
+    precision: 10,
+    scale: 3,
+    default: 0,
+    transformer: {
+      to: (value: number) => value,
+      from: (value: string) => parseFloat(value),
+    },
+  })
   end_time: number;
 
   @Column({ type: 'jsonb', nullable: true })

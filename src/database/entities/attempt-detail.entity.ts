@@ -33,6 +33,15 @@ export class AttemptDetail {
   @Column({ default: false })
   is_correct: boolean;
 
-  @Column({ type: 'decimal', precision: 5, scale: 4, default: 0 })
+  @Column({
+    type: 'decimal',
+    precision: 5,
+    scale: 4,
+    default: 0,
+    transformer: {
+      to: (value: number) => value,
+      from: (value: string) => parseFloat(value),
+    },
+  })
   similarity_score: number;
 }

@@ -9,8 +9,8 @@ export enum Difficulty {
   HARD = 'HARD',
 }
 
-export enum DifficultyMode {
-  EASY = 'EASY',
-  NORMAL = 'NORMAL',
-  HARD = 'HARD',
+export enum DictationMode {
+  KEYWORD = 'KEYWORD',
+  PHRASE = 'PHRASE',
+  FULL_SENTENCE = 'FULL_SENTENCE',
 }

@@ -9,7 +9,7 @@ import {
 } from 'typeorm';
 import { User } from './user.entity';
 import { Lesson } from './lesson.entity';
-import { DifficultyMode } from '../enums';
+import { DictationMode } from '../enums';
 import { AttemptDetail } from './attempt-detail.entity';
 
 @Entity('attempts')
@@ -31,13 +31,22 @@ export class Attempt {
   @JoinColumn({ name: 'lesson_id' })
   lesson: Lesson;
 
-  @Column({ type: 'enum', enum: DifficultyMode })
-  difficulty_mode: DifficultyMode;
+  @Column({ type: 'enum', enum: DictationMode })
+  difficulty_mode: DictationMode;
 
   @Column({ type: 'int', default: 0 })
   score: number;
 
-  @Column({ type: 'decimal', precision: 5, scale: 2, default: 0 })
+  @Column({
+    type: 'decimal',
+    precision: 5,
+    scale: 2,
+    default: 0,
+    transformer: {
+      to: (value: number) => value,
+      from: (value: string) => parseFloat(value),
+    },
+  })
   accuracy_percent: number;
 
   @Column({ type: 'int', default: 0 })
